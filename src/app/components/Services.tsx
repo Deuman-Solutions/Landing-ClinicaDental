@@ -9,6 +9,7 @@ import {
   Layers,
   ArrowRight,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { useServicesData } from "@/app/hooks/useServicesData";
 import { useScrollReveal } from "@/app/hooks/useScrollReveal";
 import type { ServiceIcon } from "@/app/data/services.data";
@@ -44,9 +45,12 @@ export function Services() {
     <section
       id="servicios"
       ref={ref}
-      className={`bg-surface-container-low py-24 md:py-32 reveal relative overflow-hidden ${
-        isActive ? "active" : ""
-      }`}
+      className={cn(
+        "bg-surface-container-low py-24 md:py-32 relative overflow-hidden",
+        isActive
+          ? "animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both"
+          : "opacity-0"
+      )}
     >
       <div className="blob w-[800px] h-[800px] -bottom-[400px] -right-[400px]" />
       <div className="max-w-[1200px] mx-auto px-4 md:px-10 relative z-10">

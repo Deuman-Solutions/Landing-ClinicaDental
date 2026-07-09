@@ -1,4 +1,5 @@
 import { CheckCircle2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { useCalmingBannerData } from "@/app/hooks/useCalmingBannerData";
 import { useScrollReveal } from "@/app/hooks/useScrollReveal";
 
@@ -11,9 +12,12 @@ export function CalmingBanner() {
   return (
     <section
       ref={ref}
-      className={`relative py-24 md:py-32 overflow-hidden reveal bg-surface-container-low ${
-        isActive ? "active" : ""
-      }`}
+      className={cn(
+        "relative py-24 md:py-32 overflow-hidden bg-surface-container-low",
+        isActive
+          ? "animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both"
+          : "opacity-0"
+      )}
     >
       <div className="blob w-[600px] h-[600px] -top-[300px] -left-[200px] opacity-30" />
       <div className="max-w-[1200px] mx-auto px-4 md:px-10 relative z-10">

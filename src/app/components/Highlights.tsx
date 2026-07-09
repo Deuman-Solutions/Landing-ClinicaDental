@@ -1,4 +1,5 @@
 import { Sparkles, Users, HeartHandshake } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { useHighlightsData } from "@/app/hooks/useHighlightsData";
 import { useScrollReveal } from "@/app/hooks/useScrollReveal";
 import type { HighlightItem } from "@/app/data/highlights.data";
@@ -18,7 +19,10 @@ export function Highlights() {
   return (
     <section
       ref={ref}
-      className={`py-24 md:py-32 reveal ${isActive ? "active" : ""} bg-gradient-to-b from-surface to-secondary-container/30`}
+      className={cn(
+        "py-24 md:py-32 bg-gradient-to-b from-surface to-secondary-container/30",
+           "animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both"
+      )}
     >
       <div className="max-w-[1200px] mx-auto px-4 md:px-10 text-center relative">
         <div className="blob w-[300px] h-[300px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50" />

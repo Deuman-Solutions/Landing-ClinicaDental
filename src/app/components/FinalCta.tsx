@@ -1,5 +1,6 @@
 import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { useFinalCtaData } from "@/app/hooks/useFinalCtaData";
 import { useScrollReveal } from "@/app/hooks/useScrollReveal";
 
@@ -10,7 +11,15 @@ export function FinalCta() {
   if (!data) return null;
 
   return (
-    <section ref={ref} className={`py-24 md:py-32 reveal ${isActive ? "active" : ""}`}>
+    <section
+      ref={ref}
+      className={cn(
+        "py-24 md:py-32",
+        isActive
+          ? "animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both"
+          : "opacity-0"
+      )}
+    >
       <div className="max-w-[1200px] mx-auto px-4 md:px-10">
         <div className="bg-surface-container-low rounded-3xl md:rounded-[3.5rem] p-12 md:p-24 relative overflow-hidden flex flex-col items-center gap-12 shadow-xl border-4 border-white">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl -mr-64 -mt-64" />

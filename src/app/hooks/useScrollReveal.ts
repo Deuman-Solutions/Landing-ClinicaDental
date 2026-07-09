@@ -14,10 +14,12 @@ export function useScrollReveal<T extends HTMLElement>() {
     const node = ref.current;
     if (!node) return;
 
+    const reveal = () => setIsActive(true);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsActive(true);
+          reveal();
           observer.disconnect();
         }
       },
@@ -25,7 +27,17 @@ export function useScrollReveal<T extends HTMLElement>() {
     );
 
     observer.observe(node);
-    return () => observer.disconnect();
+
+    // Salvaguarda: si el elemento nunca "intersecta" (por ejemplo, en
+    // capturas de página completa o herramientas que no disparan scroll
+    // real), el contenido se revela igualmente pasado un breve instante
+    // para que nunca quede invisible de forma permanente.
+    const fallbackTimer = setTimeout(reveal, 1000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallbackTimer);
+    };
   }, []);
 
   return { ref, isActive };

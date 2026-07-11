@@ -1,22 +1,51 @@
-export interface CalmingBannerData {
-  image: string;
-  imageAlt: string;
+export interface CalmingBannerPoint {
+  id: string;
+  icon: "check-circle" | "smile";
   title: string;
   description: string;
-  points: string[];
+}
+
+export interface CalmingBannerData {
+  eyebrow: string;
+  image: string;
+  imageAlt: string;
+  stat: {
+    value: string;
+    label: string;
+  };
+  title: string;
+  description: string;
+  points: CalmingBannerPoint[];
+  ctaLabel: string;
 }
 
 export const calmingBannerData: CalmingBannerData = {
+  eyebrow: "Bienestar Superior",
   image:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuCYKw7QhzHPpMuyR9S2vW8oFDOablpXY5oLKdueixLZ_znURsT0PFYv5f_WB6JC70nr5xf9FiXTWFK8vjwlRgVH-ocE1fRlbROV582iPIxrmLUSad7XvkWXd3v5ybqXQ3aviUSFWce2HzUwMxBnhiiiM5ZTeP3t6s8BeIZx3WnZPskqjSZuKl2CKL7yurdDezjBMW02QxWVag0LOpZFze1BSUTIVGPLgw5WrjZkYD8EJKYWuKsKNuyC4w",
-  imageAlt: "Clínica dental moderna y relajante",
+    "https://lh3.googleusercontent.com/aida/AP1WRLtaR1IpgPzGY86oMX0mVky2GVhbVKFVwvL2eNVovfYSR1Zl4-jvZetEkmtktqzw6fqTO3gOeRvqVH9Gm4kf98u6MYwNzvgdY-MYe4X1-eNAvdkjYxVmd997Pb4o4re673QVdp0OszdIGtqpc1b1vvvjzKwv_4VE7JzC0v-2c0Y1ONsLuBIJhrgde669mVq_bJC2Cqyex-LuZLlY0bE5djbFu8xodZyzc0pIez1UbdZyVRPcxxmbyJ1eqMMC",
+  imageAlt: "Clínica dental moderna",
+  stat: {
+    value: "15+",
+    label: "Años de excelencia transformando sonrisas",
+  },
   title: "Tu Tranquilidad es Nuestra Prioridad.",
   description:
-    "Diseñamos cada espacio y cada procedimiento para que tu visita sea una experiencia relajante y libre de estrés. Bienvenido a la odontología del futuro.",
+    "Diseñamos cada espacio y cada procedimiento para que tu visita sea una experiencia relajante y libre de estrés. Bienvenido a la odontología del futuro, donde la comodidad es tan importante como el tratamiento.",
   points: [
-    "Ambiente clínico esterilizado y acogedor",
-    "Atención sin dolor garantizada",
+    {
+      id: "ambiente-clinico",
+      icon: "check-circle",
+      title: "Ambiente Clínico",
+      description: "Esterilizado y acogedor para tu paz mental.",
+    },
+    {
+      id: "sin-dolor",
+      icon: "smile",
+      title: "Sin Dolor",
+      description: "Protocolos avanzados para tu máxima comodidad.",
+    },
   ],
+  ctaLabel: "Conoce la Clínica",
 };
 
 /**

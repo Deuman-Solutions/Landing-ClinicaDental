@@ -31,7 +31,7 @@ export function Services() {
 
   if (!data) {
     return (
-      <section className="bg-surface-container-low py-24 md:py-32">
+      <section className="bg-surface-container-lowest py-24 md:py-[100px]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {Array.from({ length: 4 }).map((_, i) => (
             <div key={i} className="h-72 rounded-3xl bg-surface-container animate-pulse" />
@@ -46,24 +46,30 @@ export function Services() {
       id="servicios"
       ref={ref}
       className={cn(
-        "bg-surface-container-low py-24 md:py-32 relative overflow-hidden",
+        "py-24 md:py-[100px] relative overflow-hidden bg-surface-container-lowest",
         isActive
-          ? "animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both"
+          ? "animate-in fade-in slide-in-from-bottom-6 duration-700 ease-out fill-mode-both"
           : "opacity-0"
       )}
     >
-      <div className="blob w-[800px] h-[800px] -bottom-[400px] -right-[400px]" />
+      <div className="absolute inset-0 opacity-50 pointer-events-none">
+        <img
+          className="w-full h-full object-cover"
+          src={data.backgroundImage}
+          alt="Fondo de equipamiento"
+        />
+      </div>
       <div className="max-w-[1200px] mx-auto px-4 md:px-10 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+        <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-8">
           <div className="max-w-2xl">
-            <span className="text-primary font-extrabold text-label-md tracking-widest uppercase mb-4 block">
+            <span className="text-primary font-bold text-sm tracking-[0.3em] uppercase mb-6 block">
               {data.eyebrow}
             </span>
-            <h2 className="text-3xl md:text-display font-display text-on-surface mb-8 drop-shadow-sm">
+            <h2 className="text-4xl md:text-6xl font-display font-extrabold text-on-surface leading-[1.1]">
               {data.title}
             </h2>
           </div>
-          <div className="text-on-surface-variant max-w-sm text-lg leading-relaxed border-l-4 border-primary/30 pl-6">
+          <div className="text-on-surface-variant max-w-sm text-lg border-l-4 border-primary/30 pl-8 py-2">
             {data.description}
           </div>
         </div>
@@ -74,22 +80,22 @@ export function Services() {
             return (
               <div
                 key={service.id}
-                className="group bg-white p-10 rounded-3xl border border-surface-container shadow-sm hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 flex flex-col h-full hover:-translate-y-2 relative overflow-hidden items-center text-center"
+                className="group glass-panel p-10 rounded-3xl hover:bg-primary transition-all duration-500 flex flex-col items-center text-center"
               >
-                <div className="w-24 h-24 bg-primary-container/20 text-primary rounded-3xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                  <Icon className="size-10" />
+                <div className="w-20 h-20 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-8 group-hover:bg-white group-hover:text-primary transition-colors duration-500 shadow-sm">
+                  <Icon className="size-9" strokeWidth={1.75} />
                 </div>
-                <h4 className="text-headline-md font-headline-md text-on-background mb-4">
+                <h4 className="text-xl font-bold text-on-surface mb-3 group-hover:text-white transition-colors duration-500">
                   {service.title}
                 </h4>
-                <p className="text-body-md text-on-surface-variant mb-8 flex-grow leading-relaxed">
+                <p className="text-on-surface-variant mb-8 flex-grow group-hover:text-white/80 transition-colors duration-500">
                   {service.description}
                 </p>
                 <button
                   type="button"
-                  className="text-primary font-bold text-label-md flex items-center gap-2 group-hover:gap-4 transition-all duration-300 justify-center"
+                  className="text-primary font-bold text-sm flex items-center gap-2 hover:gap-4 transition-all uppercase tracking-widest group-hover:text-white"
                 >
-                  Saber más <ArrowRight className="size-5" />
+                  Saber más <ArrowRight className="size-4" />
                 </button>
               </div>
             );

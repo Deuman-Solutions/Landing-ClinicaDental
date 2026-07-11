@@ -1,17 +1,28 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 /**
  * Reemplaza el listener de scroll manual del HTML original por un
- * IntersectionObserver: agrega la clase "active" cuando el elemento
- * entra en el viewport, disparando la transición definida en index.css
- * (.reveal / .reveal.active).
+ * IntersectionObserver: marca isActive=true cuando el elemento entra en el
+ * viewport, para condicionar las clases de animación de tw-animate-css
+ * (ver Highlights, Services, CalmingBanner y FinalCta).
+ *
+ * Usa un callback ref (en vez de useRef) a propósito: estos componentes
+ * dependen de datos que llegan vía TanStack Query, así que la sección real
+ * puede montarse recién en un segundo render (después de un skeleton o un
+ * "return null" inicial). Un useRef normal + useEffect con deps [] no se
+ * entera de ese montaje tardío. El callback ref sí, porque dispara un
+ * cambio de estado ("node") cada vez que React monta o desmonta el
+ * elemento, y el useEffect de abajo depende de ese estado.
  */
 export function useScrollReveal<T extends HTMLElement>() {
-  const ref = useRef<T | null>(null);
+  const [node, setNode] = useState<T | null>(null);
   const [isActive, setIsActive] = useState(false);
 
+  const ref = useCallback((element: T | null) => {
+    setNode(element);
+  }, []);
+
   useEffect(() => {
-    const node = ref.current;
     if (!node) return;
 
     const reveal = () => setIsActive(true);
@@ -38,7 +49,7 @@ export function useScrollReveal<T extends HTMLElement>() {
       observer.disconnect();
       clearTimeout(fallbackTimer);
     };
-  }, []);
+  }, [node]);
 
   return { ref, isActive };
 }

@@ -1,77 +1,90 @@
-import { Sparkles, Users, HeartHandshake } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useHighlightsData } from "@/app/hooks/useHighlightsData";
 import { useScrollReveal } from "@/app/hooks/useScrollReveal";
-import type { HighlightItem } from "@/app/data/highlights.data";
-
-const ICONS: Record<HighlightItem["icon"], typeof Sparkles> = {
-  sparkles: Sparkles,
-  users: Users,
-  "heart-handshake": HeartHandshake,
-};
 
 export function Highlights() {
   const { data } = useHighlightsData();
-  const { ref, isActive } = useScrollReveal<HTMLElement>();
+  const { ref: introRef, isActive: introActive } = useScrollReveal<HTMLElement>();
+  const { ref: trustRef, isActive: trustActive } = useScrollReveal<HTMLElement>();
 
   if (!data) return null;
 
   return (
-    <section
-      ref={ref}
-      className={cn(
-        "py-24 md:py-32 bg-gradient-to-b from-surface to-secondary-container/30",
-           "animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both"
-      )}
-    >
-      <div className="max-w-[1200px] mx-auto px-4 md:px-10 text-center relative">
-        <div className="blob w-[300px] h-[300px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50" />
-        <span className="text-primary font-extrabold text-label-md tracking-widest uppercase mb-4 block">
-          {data.eyebrow}
-        </span>
-        <h2 className="text-4xl md:text-display font-display text-on-surface mb-8 drop-shadow-sm">
-          {data.title}
-        </h2>
-        <div className="w-24 h-1.5 bg-primary mx-auto rounded-full" />
-      </div>
-
-      <div className="max-w-[1200px] mx-auto px-4 md:px-10">
-        <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-display font-display text-on-surface mb-8 drop-shadow-sm pt-5">
-            {data.subtitle}
-          </h2>
+    <>
+      {/* Intro con fondo clínico */}
+      <section
+        ref={introRef}
+        className={cn(
+          "relative isolate py-24 md:py-[100px] overflow-hidden",
+          introActive
+            ? "animate-in fade-in slide-in-from-bottom-6 duration-700 ease-out fill-mode-both"
+            : "opacity-0"
+        )}
+      >
+        <div className="absolute inset-0 -z-10">
+          <img
+            className="w-full h-full object-cover opacity-90"
+            src={data.backgroundImage}
+            alt="Fondo clínico abstracto"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface" />
         </div>
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10 text-center relative z-10">
+          <span className="text-primary font-bold text-sm tracking-[0.2em] uppercase mb-4 block">
+            {data.eyebrow}
+          </span>
+          <h2 className="text-4xl md:text-5xl font-display font-extrabold text-on-surface mb-8">
+            {data.title}
+          </h2>
+          <div className="w-24 h-1.5 bg-primary mx-auto rounded-full shadow-sm" />
+          <p className="mt-12 text-lg text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+            {data.description}
+          </p>
+        </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {data.items.map((item) => {
-            const Icon = ICONS[item.icon];
-            return (
+      {/* Valores de confianza, con imagen de fondo tenue */}
+      <section
+        ref={trustRef}
+        className={cn(
+          "py-24 md:py-[100px] relative isolate overflow-hidden bg-white",
+          trustActive
+            ? "animate-in fade-in slide-in-from-bottom-6 duration-700 ease-out fill-mode-both"
+            : "opacity-0"
+        )}
+      >
+        <div className="absolute inset-0 w-full h-full opacity-70 pointer-events-none -z-10">
+          <img
+            className="w-full h-full object-cover"
+            src={data.trustBackgroundImage}
+            alt="Tecnología dental"
+          />
+        </div>
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10 opacity-90">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {data.items.map((item) => (
               <div
                 key={item.id}
-                className="group bg-white p-12 rounded-3xl text-center flex flex-col items-center hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 border border-outline-variant/30 relative overflow-hidden"
+                className="group bg-surface-container-low p-10 rounded-3xl border border-outline-variant/20 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-16 -mt-16 transition-all duration-500 group-hover:scale-150" />
-                <div className="w-full h-48 mb-8 overflow-hidden relative z-10 rounded-2xl flex items-center justify-center bg-primary-container/10">
+                <div className="w-full h-56 mb-8 overflow-hidden rounded-2xl shadow-inner">
                   <img
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     src={item.image}
                     alt={item.title}
                   />
                 </div>
-                <div className="px-8 pb-4 flex flex-col items-center relative z-10">
-                  <Icon className="text-primary size-8 mb-4" />
-                  <h3 className="text-headline-md font-headline-md text-primary mb-6">
-                    {item.title}
-                  </h3>
-                  <p className="text-body-md text-on-surface-variant leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold text-primary mb-4">
+                  {item.title}
+                </h3>
+                <p className="text-on-surface-variant leading-relaxed">
+                  {item.description}
+                </p>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

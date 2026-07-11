@@ -2,7 +2,6 @@ export interface FooterSocialLink {
   id: string;
   label: string;
   href: string;
-  icon: "facebook" | "instagram" | "linkedin";
 }
 
 export interface FooterScheduleItem {
@@ -15,6 +14,13 @@ export interface FooterLegalLink {
   id: string;
   label: string;
   href: string;
+}
+
+export interface FooterNewsletter {
+  title: string;
+  description: string;
+  placeholder: string;
+  ctaLabel: string;
 }
 
 export interface FooterData {
@@ -31,6 +37,7 @@ export interface FooterData {
   };
   schedule: FooterScheduleItem[];
   social: FooterSocialLink[];
+  newsletter: FooterNewsletter;
   legal: FooterLegalLink[];
   copyright: string;
 }
@@ -49,15 +56,21 @@ export const footerData: FooterData = {
     address: "123 Medical Plaza, Ciudad",
   },
   schedule: [
-    { day: "Lun - Vie:", hours: "8:00 - 20:00" },
-    { day: "Sábado:", hours: "9:00 - 14:00" },
-    { day: "Domingo:", hours: "Cerrado", closed: true },
+    { day: "Lunes - Viernes", hours: "8:00 - 20:00" },
+    { day: "Sábado", hours: "9:00 - 14:00" },
+    { day: "Domingo", hours: "Cerrado", closed: true },
   ],
   social: [
-    { id: "facebook", label: "FB", href: "#", icon: "facebook" },
-    { id: "instagram", label: "IG", href: "#", icon: "instagram" },
-    { id: "linkedin", label: "IN", href: "#", icon: "linkedin" },
+    { id: "facebook", label: "FB", href: "#" },
+    { id: "instagram", label: "IG", href: "#" },
+    { id: "linkedin", label: "IN", href: "#" },
   ],
+  newsletter: {
+    title: "Newsletter",
+    description: "Recibe consejos de salud dental y ofertas exclusivas.",
+    placeholder: "Tu email...",
+    ctaLabel: "Suscribirse",
+  },
   legal: [
     { id: "privacidad", label: "Privacidad", href: "#" },
     { id: "terminos", label: "Términos", href: "#" },

@@ -19,14 +19,17 @@ export interface ServicesData {
   eyebrow: string;
   title: string;
   description: string;
+  backgroundImage: string;
   items: ServiceItem[];
 }
 
 export const servicesData: ServicesData = {
-  eyebrow: "Nuestros Servicios",
+  eyebrow: "Excelencia en cada detalle",
   title: "Soluciones Integrales para tu Sonrisa",
   description:
-    "Ofrecemos una amplia gama de tratamientos dentales especializados con los más altos estándares de calidad y cuidado.",
+    "Ofrecemos una amplia gama de tratamientos dentales especializados con los más altos estándares internacionales de calidad.",
+  backgroundImage:
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuAGaJvcOLIGF2PWXxPQ9by3Uf431eYKASEblnYY5E_ZKQQtReIBaoPyGWWSlLwuPvgCHBQe-L_PoqQyD2z3b8ZwldKa7CNWmUo65ovGE6Dr_JAQGJBx0mzHZX8dwZfAFnHQfMZqHduP59892Kfld_V0BbrfbNSMSB8Vcf5Y9IKhOOPW4ceXeR81awqumTDymxFPAzGRP1WcZDGXuEcgTxqyCanqSjV6qInk12AcH67AXNeXCS-Ykct9LA",
   items: [
     {
       id: "limpieza-dental",

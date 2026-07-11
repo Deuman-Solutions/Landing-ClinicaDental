@@ -1,5 +1,4 @@
 import { Send } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useFinalCtaData } from "@/app/hooks/useFinalCtaData";
 import { useScrollReveal } from "@/app/hooks/useScrollReveal";
@@ -14,34 +13,38 @@ export function FinalCta() {
     <section
       ref={ref}
       className={cn(
-        "py-24 md:py-32",
+        "relative h-[600px] flex items-center overflow-hidden",
         isActive
-          ? "animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both"
+          ? "animate-in fade-in slide-in-from-bottom-6 duration-700 ease-out fill-mode-both"
           : "opacity-0"
       )}
     >
-      <div className="max-w-[1200px] mx-auto px-4 md:px-10">
-        <div className="bg-surface-container-low rounded-3xl md:rounded-[3.5rem] p-12 md:p-24 relative overflow-hidden flex flex-col items-center gap-12 shadow-xl border-4 border-white">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl -mr-64 -mt-64" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-3xl -ml-48 -mb-48" />
+      <div className="absolute inset-0 z-0">
+        <img
+          className="w-full h-full object-cover"
+          src={data.backgroundImage}
+          alt="Paciente feliz"
+        />
+        <div className="absolute inset-0 bg-on-background/60 backdrop-blur-[2px]" />
+      </div>
 
-          <div className="relative z-10 max-w-2xl text-center">
-            <h2 className="text-4xl md:text-display font-display text-primary mb-8 drop-shadow-sm">
-              {data.title}
-            </h2>
-            <p className="text-body-lg text-on-surface-variant mb-0">
-              {data.description}
-            </p>
-          </div>
+      <div className="max-w-[1200px] mx-auto px-4 md:px-10 w-full relative z-10">
+        <div className="bg-gradient-to-br from-primary via-primary-container to-primary-container rounded-[2.5rem] p-12 md:p-20 text-center shadow-2xl max-w-4xl mx-auto relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full -mr-40 -mt-40 blur-3xl group-hover:scale-110 transition-transform duration-1000" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -ml-32 -mb-32 blur-2xl" />
 
-          <div className="relative z-10 w-full lg:w-auto">
-            <Button className="w-full lg:w-auto h-auto bg-primary text-on-primary px-16 py-6 rounded-2xl font-headline-md shadow-lg hover:shadow-primary/30 hover:scale-105 active:scale-95 transition-all duration-300 group justify-center">
-              <span className="flex items-center justify-center gap-3">
-                {data.ctaLabel}
-                <Send className="size-5 group-hover:translate-x-2 transition-transform" />
-              </span>
-            </Button>
-          </div>
+          <h2 className="text-4xl md:text-5xl font-display font-extrabold text-white mb-8 tracking-tight relative z-10">
+            {data.title}
+          </h2>
+          <p className="text-white/90 text-xl mb-12 max-w-2xl mx-auto leading-relaxed relative z-10">
+            {data.description}
+          </p>
+          <button
+            type="button"
+            className="relative z-10 bg-white text-primary px-12 py-5 rounded-2xl font-extrabold text-xl shadow-[0_20px_50px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-4 mx-auto"
+          >
+            {data.ctaLabel} <Send className="size-5" />
+          </button>
         </div>
       </div>
     </section>

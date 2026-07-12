@@ -1,18 +1,15 @@
-import { useState } from "react";
 import { Stethoscope, Phone, Mail, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useFooterData } from "@/app/hooks/useFooterData";
 
 export function Footer() {
   const { data } = useFooterData();
-  const [email, setEmail] = useState("");
 
   if (!data) return null;
 
   return (
-    <footer className="bg-surface-container py-20 border-t border-outline-variant/20">
+    <footer className="bg-surface-container pb-5 pt-10 border-t border-outline-variant/20">
       <div className="max-w-[1200px] mx-auto px-4 md:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-5">
           <div className="flex flex-col gap-8">
             <div className="text-3xl font-display font-extrabold text-primary tracking-tighter flex items-center gap-3">
               <Stethoscope className="size-9" />
@@ -87,29 +84,9 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-8">
-            <h4 className="font-extrabold text-on-surface text-xs uppercase tracking-[0.2em]">
-              {data.newsletter.title}
-            </h4>
-            <p className="text-sm text-on-surface-variant">
-              {data.newsletter.description}
-            </p>
-            <div className="flex flex-col gap-3">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={data.newsletter.placeholder}
-                className="bg-white border border-outline-variant/30 rounded-xl px-5 py-4 focus:ring-2 focus:ring-primary/20 transition-all outline-none"
-              />
-              <Button className="bg-primary text-on-primary font-bold py-4 h-auto rounded-xl hover:opacity-90 transition-all shadow-lg shadow-primary/10">
-                {data.newsletter.ctaLabel}
-              </Button>
-            </div>
-          </div>
         </div>
 
-        <div className="pt-10 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="pt-5 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-sm text-on-surface-variant">{data.copyright}</p>
           <div className="flex gap-8 text-sm text-on-surface-variant font-medium">
             {data.legal.map((link) => (

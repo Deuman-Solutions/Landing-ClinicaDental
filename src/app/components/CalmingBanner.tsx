@@ -36,7 +36,7 @@ export function CalmingBanner() {
               src={data.image}
               alt={data.imageAlt}
             />
-            <div className="absolute bottom-10 -right-10 bg-white p-8 rounded-2xl shadow-2xl max-w-[240px] hidden xl:block">
+            <div className="absolute bottom-10 -right-10 bg-white p-8 rounded-2xl shadow-2xl max-w-[220px] hidden xl:block">
               <p className="text-primary font-bold text-4xl mb-1">{data.stat.value}</p>
               <p className="text-on-surface-variant text-sm font-medium">{data.stat.label}</p>
             </div>

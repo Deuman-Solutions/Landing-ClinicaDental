@@ -16,13 +16,6 @@ export interface FooterLegalLink {
   href: string;
 }
 
-export interface FooterNewsletter {
-  title: string;
-  description: string;
-  placeholder: string;
-  ctaLabel: string;
-}
-
 export interface FooterData {
   brand: {
     name: string;
@@ -37,7 +30,6 @@ export interface FooterData {
   };
   schedule: FooterScheduleItem[];
   social: FooterSocialLink[];
-  newsletter: FooterNewsletter;
   legal: FooterLegalLink[];
   copyright: string;
 }
@@ -63,20 +55,14 @@ export const footerData: FooterData = {
   social: [
     { id: "facebook", label: "FB", href: "#" },
     { id: "instagram", label: "IG", href: "#" },
-    { id: "linkedin", label: "IN", href: "#" },
   ],
-  newsletter: {
-    title: "Newsletter",
-    description: "Recibe consejos de salud dental y ofertas exclusivas.",
-    placeholder: "Tu email...",
-    ctaLabel: "Suscribirse",
-  },
+  
   legal: [
     { id: "privacidad", label: "Privacidad", href: "#" },
     { id: "terminos", label: "Términos", href: "#" },
     { id: "cookies", label: "Cookies", href: "#" },
   ],
-  copyright: "© 2024 SmileClinic Clínica Dental. Todos los derechos reservados.",
+  copyright: "© 2026 SmileClinic Clínica Dental. Desarrollado por Deuman Solutions.",
 };
 
 /**

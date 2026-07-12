@@ -52,7 +52,7 @@ export function Services() {
           : "opacity-0"
       )}
     >
-      <div className="absolute inset-0 opacity-50 pointer-events-none">
+      <div className="absolute inset-0 opacity-40 pointer-events-none">
         <img
           className="w-full h-full object-cover"
           src={data.backgroundImage}

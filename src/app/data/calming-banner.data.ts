@@ -22,7 +22,7 @@ export interface CalmingBannerData {
 export const calmingBannerData: CalmingBannerData = {
   eyebrow: "Bienestar Superior",
   image:
-    "https://lh3.googleusercontent.com/aida/AP1WRLtaR1IpgPzGY86oMX0mVky2GVhbVKFVwvL2eNVovfYSR1Zl4-jvZetEkmtktqzw6fqTO3gOeRvqVH9Gm4kf98u6MYwNzvgdY-MYe4X1-eNAvdkjYxVmd997Pb4o4re673QVdp0OszdIGtqpc1b1vvvjzKwv_4VE7JzC0v-2c0Y1ONsLuBIJhrgde669mVq_bJC2Cqyex-LuZLlY0bE5djbFu8xodZyzc0pIez1UbdZyVRPcxxmbyJ1eqMMC",
+    "/Clínica_dental_moderna.jpg",
   imageAlt: "Clínica dental moderna",
   stat: {
     value: "15+",
